@@ -1,2 +1,2 @@
 # PVP-VP
-Pattern Validation Protocol Verification Pipeline
+Pattern Validation Protocol -Verification Pipeline
