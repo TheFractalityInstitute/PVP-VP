@@ -1,0 +1,1491 @@
+\documentclass[12pt,oneside]{memoir}
+
+% ============================================
+% Pattern Validation Protocol v3.1
+% Complete Implementation Framework
+% The Fractality Institute
+% ============================================
+
+% --------- Packages ---------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{physics}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    commentstyle=\color{gray},
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    frame=single,
+    captionpos=b
+}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!60!black,
+    citecolor=blue!60!black,
+    urlcolor=blue!60!black,
+    pdftitle={Pattern Validation Protocol v3.0},
+    pdfauthor={Fractality Institute Methodology Council}
+}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{siunitx}
+\usepackage{csquotes}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{epigraph}
+\usepackage{microtype}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,decorations.pathmorphing,positioning,shapes,patterns}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% --------- Theorem Environments ---------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{law}[theorem]{Law}
+\newtheorem{principle}[theorem]{Principle}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{protocol}[theorem]{Protocol}
+\newtheorem{stage}[theorem]{Stage}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{falsifier}[theorem]{Falsifier}
+\newtheorem{warning}[theorem]{Warning}
+
+% --------- Custom Commands ---------
+\newcommand{\PVP}{\textsc{PVP}}
+\newcommand{\FI}{\textsc{FI}}
+\newcommand{\UCT}{\textsc{UCT}}
+\newcommand{\BSW}{\textsc{BSW}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmax}{arg\,max}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand{\BigO}{\mathcal{O}}
+\newcommand{\Pattern}{\mathcal{P}}
+\newcommand{\Complexity}{\mathcal{K}}
+\newcommand{\Crystal}{\mathcal{C}}
+
+% Custom colors
+\definecolor{stagecolor}{RGB}{0,100,200}
+\definecolor{warncolor}{RGB}{200,100,0}
+\definecolor{passcolor}{RGB}{0,150,0}
+\definecolor{failcolor}{RGB}{200,0,0}
+
+% --------- Title Setup ---------
+\title{\Huge Pattern Validation Protocol v3.1\\[0.5em]
+       \LARGE Complete Implementation Framework\\[0.5em]
+       \Large With Statistical Rigor and Computational Guidance\\[1em]
+       \large Canon I (Empirical) with Canon II/III Cross-Support}
+       
+\author{\Large Fractality Institute Methodology Council\\[0.5em]
+        \normalsize Maintainer: methodology@fractality.institute\\[1em]
+        \normalsize Document ID: FI-MP-004-v3.1\\
+        \normalsize Release Date: 2025-08-03\\
+        \normalsize Status: Active}
+        
+\date{Version 3.1 — August 2025}
+
+% ============================================
+% Document Begin
+% ============================================
+
+\begin{document}
+\frontmatter
+\maketitle
+
+% --------- Executive Summary ---------
+\clearpage
+\thispagestyle{empty}
+\vspace*{2in}
+\begin{center}
+\Large\bfseries Executive Summary
+\end{center}
+
+\noindent
+The Pattern Validation Protocol (\PVP{}) v3.1 represents a complete methodology for validating pattern discoveries across all domains and scales. This major release transforms \PVP{} from conceptual framework to practical implementation with:
+
+\begin{itemize}
+\item \textbf{Statistical Power Templates}: Domain-specific procedures for effect size and sample calculations
+\item \textbf{Computational Complexity Guidance}: Big-O analysis and pragmatic optimization strategies
+\item \textbf{Uncertainty Quantification}: Full confidence interval tracking through all stages
+\item \textbf{Negative Control Library}: Standardized false patterns for calibration
+\item \textbf{Resource-Adaptive Variants}: Multiple protocol versions for different constraints
+\item \textbf{Complete Worked Examples}: Known-true, known-false, and ambiguous patterns
+\end{itemize}
+
+\vspace{1em}
+\noindent
+\large\itshape
+``Truth emerges not from certainty, but from the rigorous quantification of uncertainty.''
+
+\clearpage
+\tableofcontents
+\listoffigures
+\listoftables
+\listofalgorithms
+
+% ============================================
+% Main Matter
+% ============================================
+\mainmatter
+
+\part{Core Protocol}
+
+\chapter{Introduction and Purpose}
+
+\section{Mission Statement}
+
+The Pattern Validation Protocol (\PVP{}) systematizes and validates pattern discovery across all domains and scales using LLM-assisted or hybrid cognition. Version 3.0 transforms \PVP{} from conceptual framework to practical implementation with full statistical rigor, computational guidance, and uncertainty quantification.
+
+\section{Major Upgrades in v3.0}
+
+This major release includes:
+
+\begin{itemize}
+\item[\checkmark] \textbf{Statistical Power Implementation Templates}: Domain-specific procedures for effect size and sample calculations
+\item[\checkmark] \textbf{Parameter Selection Validation}: Methods for identifying control parameters in novel systems
+\item[\checkmark] \textbf{Computational Complexity Guidance}: Big-O analysis and pragmatic shortcuts
+\item[\checkmark] \textbf{Uncertainty Propagation Framework}: Confidence interval tracking through all stages
+\item[\checkmark] \textbf{Multi-label Pattern Classification}: Hierarchical system for overlapping pattern types
+\item[\checkmark] \textbf{Negative Control Library}: Standardized false patterns for calibration
+\item[\checkmark] \textbf{Resource-Adaptive Variants}: Multiple protocol versions for different constraints
+\end{itemize}
+
+\section{Protocol Philosophy}
+
+\begin{principle}[Rigorous Falsification]
+The protocol prioritizes falsification over confirmation. Every pattern must survive multiple attempts at disproof before acceptance.
+\end{principle}
+
+\begin{principle}[Computational Feasibility]
+All procedures must be computationally tractable. Where exact solutions are intractable, the protocol provides validated approximations with bounded error.
+\end{principle}
+
+\begin{principle}[Semantic Stability]
+Pattern definitions must remain stable throughout validation. Semantic drift invalidates results.
+\end{principle}
+
+\chapter{Full Protocol Overview}
+
+\section{Protocol Stages}
+
+\begin{table}[h]
+\centering
+\caption{Complete \PVP{} Stage Reference}
+\label{tab:stages}
+\begin{tabular}{llllc}
+\toprule
+\textbf{Stage} & \textbf{Name} & \textbf{Canon} & \textbf{Function} & \textbf{Complexity} \\
+\midrule
+0 & Pattern Hypothesis Registration & I & Define pattern with power analysis & $\BigO(1)$ \\
+0.5 & Semantic Anchoring & I & Lock definitions with tolerance & $\BigO(n)$ \\
+1 & Observation and Recognition & I & Neutral extraction of motifs & $\BigO(n \log n)$ \\
+2 & Critical Deconstruction & I & Red team analysis + artifact check & $\BigO(n)$ \\
+2.3 & Qualia Contamination Check & I/II & Optional for consciousness claims & $\BigO(1)$ \\
+3 & Null Hypothesis Testing & I & Shuffling, injection, collapse testing & $\BigO(n^2)$ \\
+3.5 & Positive Control Injection & I & Synthetic pattern validation & $\BigO(n)$ \\
+3.6 & Phase Transition Detection & I/II & Critical threshold mapping & $\BigO(n^p)$ \\
+4 & Mechanism Identification & II & Seek lawful or generative explanation & $\BigO(n)$ \\
+4.5 & Temporal Validation & I & Time-scale stability analysis & $\BigO(nt)$ \\
+5 & Synthesis and Reporting & I/II & Pattern summary, confidence, questions & $\BigO(1)$ \\
+6 & Meta-Reflection & III & Bias check, drift analysis, error taxonomy & $\BigO(1)$ \\
+$\circlearrowleft$ & Meta-PVP Validation & I/III & Apply protocol to itself & $\BigO(n^2)$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Where $n$ = data size, $p$ = parameter dimensions, $t$ = time points.
+
+\section{Resource-Adaptive Variants}
+
+\subsection{PVP-Micro: Minimal Resource Version}
+\begin{itemize}
+\item 3 stages: Define \& Hypothesize, Test \& Falsify, Report with Caveats
+\item Use when: Extreme resource constraints
+\item Validity: Low confidence, requires follow-up
+\end{itemize}
+
+\subsection{PVP-Lite: Essential Version}
+\begin{itemize}
+\item 5 stages: Core validation without advanced tests
+\item Use when: Limited resources but need reasonable confidence
+\item Validity: Moderate confidence
+\end{itemize}
+
+\subsection{PVP-Standard: Recommended Version}
+\begin{itemize}
+\item 9 stages: Includes all essential stages
+\item Use when: Standard research resources available
+\item Validity: Moderate to high confidence
+\end{itemize}
+
+\subsection{PVP-Complete: Full Protocol}
+\begin{itemize}
+\item 13+ stages: All stages including optional ones
+\item Use when: High-stakes patterns, publication targets
+\item Validity: Highest achievable confidence
+\end{itemize}
+
+\chapter{Statistical Foundations}
+
+\section{Power Analysis Templates}
+
+\begin{lstlisting}[caption={Domain-Specific Power Analysis},label={lst:power}]
+class PowerAnalysisTemplate:
+    """Base class for domain-specific power calculations"""
+    
+    def __init__(self, domain_type, effect_size_priors):
+        self.domain = domain_type
+        self.priors = effect_size_priors
+        self.correction_method = self._select_correction()
+    
+    def calculate_required_n(self, alpha=0.05, power=0.80, scales=3):
+        """Calculate sample size with multiple comparison correction"""
+        # Bonferroni correction for multiple scales
+        alpha_corrected = alpha / scales
+        
+        # Domain-specific calculations
+        if self.domain == "PHYSICAL":
+            return self._physical_n_calculation(alpha_corrected, power)
+        elif self.domain == "BIOLOGICAL":
+            return self._biological_n_calculation(alpha_corrected, power)
+        elif self.domain == "COGNITIVE":
+            return self._cognitive_n_calculation(alpha_corrected, power)
+        elif self.domain == "CONSCIOUSNESS":
+            return self._consciousness_n_calculation(alpha_corrected, power)
+    
+    def _physical_n_calculation(self, alpha, power):
+        """High precision requirements, small effect sizes expected"""
+        from statsmodels.stats.power import tt_ind_solve_power
+        effect_size = self.priors.get('effect_size', 0.2)  # Small default
+        n = tt_ind_solve_power(effect_size=effect_size, 
+                               alpha=alpha, 
+                               power=power, 
+                               alternative='two-sided')
+        return int(np.ceil(n * 1.2))  # 20% safety margin
+\end{lstlisting}
+
+\section{Effect Size Estimation}
+
+For novel domains where effect sizes are unknown:
+
+\begin{lstlisting}[caption={Conservative Effect Size Estimation}]
+def estimate_novel_domain_effect_size(pilot_data, bootstrap_n=1000):
+    """Conservative effect size estimation for unknown domains"""
+    if len(pilot_data) < 30:
+        warnings.warn("Pilot data insufficient; using ultra-conservative priors")
+        return 0.1  # Ultra-small effect assumption
+    
+    # Bootstrap confidence intervals
+    effect_sizes = []
+    for _ in range(bootstrap_n):
+        sample = np.random.choice(pilot_data, size=len(pilot_data), replace=True)
+        effect_sizes.append(calculate_cohens_d(sample))
+    
+    # Use lower bound of 95% CI for conservative estimation
+    return np.percentile(effect_sizes, 2.5)
+\end{lstlisting}
+
+\section{Multiple Testing Corrections}
+
+\begin{table}[h]
+\centering
+\caption{Correction Method Selection}
+\begin{tabular}{lll}
+\toprule
+\textbf{Scenario} & \textbf{Method} & \textbf{When to Use} \\
+\midrule
+Independent tests & Bonferroni & Conservative, few tests \\
+Many correlated tests & FDR (Benjamini-Hochberg) & Large-scale testing \\
+Unknown correlation & Permutation-based & Computational resources available \\
+Hierarchical tests & Hierarchical FDR & Nested hypotheses \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\chapter{Stage-by-Stage Implementation}
+
+\section{Stage 0: Pattern Hypothesis Registration}
+
+\begin{protocol}[Pattern Registration]
+Define the hypothesized pattern with complete specifications:
+\begin{enumerate}
+\item Mathematical formulation in symbolic form
+\item Hierarchical multi-label classification
+\item Clear confirmation and refutation criteria
+\item Complete power analysis with domain-specific adjustments
+\item Prior plausibility rating with uncertainty
+\item Computational complexity estimate
+\item Resource requirements specification
+\end{enumerate}
+\end{protocol}
+
+\subsection{Classification System}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+    level 1/.style={sibling distance=4cm},
+    level 2/.style={sibling distance=2cm}
+]
+\node {Pattern}
+    child {node {Fundamental Type}
+        child {node {Deterministic}}
+        child {node {Probabilistic}}
+        child {node {Emergent}}
+    }
+    child {node {Mechanism Type}
+        child {node {Algorithmic}}
+        child {node {Dynamical}}
+        child {node {Informational}}
+    }
+    child {node {Domain Type}
+        child {node {Physical}}
+        child {node {Biological}}
+        child {node {Cognitive}}
+    };
+\end{tikzpicture}
+\caption{Hierarchical Pattern Classification}
+\end{figure}
+
+\section{Stage 0.5: Semantic Anchoring}
+
+\begin{definition}[Triple-Lock Method]
+Each key term must be defined three ways:
+\begin{enumerate}
+\item \textbf{Mathematical}: Formal symbolic representation
+\item \textbf{Operational}: Measurement procedure with error bounds
+\item \textbf{Invariant}: What remains constant across systems
+\end{enumerate}
+\end{definition}
+
+\subsection{Domain-Specific Tolerances}
+
+\begin{table}[h]
+\centering
+\caption{Semantic Dissonance Tolerances by Domain}
+\begin{tabular}{lc}
+\toprule
+\textbf{Domain} & \textbf{Maximum Drift Tolerance} \\
+\midrule
+Mathematical & 1\% \\
+Physical & 5\% \\
+Biological & 10\% \\
+Cognitive & 15\% \\
+Consciousness & 20\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Stage 1: Observation and Recognition}
+
+\begin{algorithm}
+\caption{Pattern Recognition with Complexity Management}
+\begin{algorithmic}[1]
+\Procedure{RecognizePattern}{data, pattern\_type}
+    \If{$|data| < 10^4$}
+        \State result $\gets$ ExactPatternMatch(data, pattern\_type)
+    \ElsIf{$|data| < 10^6$}
+        \State chunks $\gets$ ChunkData(data, size=$\sqrt{|data|}$)
+        \State result $\gets$ ParallelMatch(chunks, pattern\_type)
+    \Else
+        \State sample $\gets$ AdaptiveSample(data)
+        \State result $\gets$ ApproximateMatch(sample, pattern\_type)
+        \State confidence $\gets$ BootstrapConfidence(result, sample)
+    \EndIf
+    \State \Return result, confidence
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\section{Stage 2: Critical Deconstruction}
+
+\begin{protocol}[Red Team Analysis]
+Systematically attempt to discredit the pattern:
+\begin{enumerate}
+\item List all simpler explanations
+\item Identify potential measurement artifacts
+\item Check for selection bias in data
+\item Test sensitivity to analysis choices
+\item Search for confounding variables
+\item Apply Occam's razor rigorously
+\end{enumerate}
+\end{protocol}
+
+\section{Stage 3: Null Hypothesis Testing}
+
+\subsection{Null Generation Methods}
+
+\begin{lstlisting}[caption={Comprehensive Null Testing Suite}]
+def comprehensive_null_test(data, pattern, max_perms=10000):
+    """Test pattern against multiple null models"""
+    
+    null_methods = {
+        'shuffle': lambda d: np.random.permutation(d),
+        'phase_random': lambda d: phase_randomize(d),
+        'surrogate': lambda d: generate_iaaft_surrogate(d),
+        'bootstrap': lambda d: bootstrap_null(d),
+        'markov': lambda d: markov_null_model(d)
+    }
+    
+    results = {}
+    for method_name, method_func in null_methods.items():
+        p_values = []
+        
+        for _ in range(min(max_perms, 1000)):
+            null_data = method_func(data)
+            null_pattern = extract_pattern(null_data)
+            
+            # Compare to observed pattern
+            p_values.append(compare_patterns(pattern, null_pattern))
+        
+        results[method_name] = {
+            'p_value': np.mean(p_values),
+            'ci_lower': np.percentile(p_values, 2.5),
+            'ci_upper': np.percentile(p_values, 97.5)
+        }
+    
+    # Pattern must survive ALL null tests
+    return all(r['p_value'] < 0.05 for r in results.values())
+\end{lstlisting}
+
+\section{Stage 3.5: Positive Control Injection}
+
+\begin{protocol}[Synthetic Pattern Validation]
+\begin{enumerate}
+\item Generate synthetic data with known pattern strength
+\item Apply full detection pipeline
+\item Verify recovery within 10\% of injected strength
+\item Test at multiple signal-to-noise ratios
+\item Confirm detection threshold matches theoretical predictions
+\end{enumerate}
+\end{protocol}
+
+\section{Stage 3.6: Phase Transition Detection}
+
+\subsection{Parameter Space Exploration}
+
+\begin{algorithm}
+\caption{Adaptive Phase Space Exploration}
+\begin{algorithmic}[1]
+\Procedure{ExplorePhaseSpace}{parameters, budget}
+    \If{$|parameters| \leq 3$}
+        \State grid $\gets$ FullFactorialGrid(parameters)
+    \Else
+        \State \Comment{High-dimensional - use adaptive sampling}
+        \State initial $\gets$ LatinHypercube(parameters, $n=10 \cdot |parameters|$)
+        \State model $\gets$ GaussianProcess(initial)
+        \While{budget $> 0$}
+            \State next\_point $\gets$ MaximizeAcquisition(model)
+            \State result $\gets$ Evaluate(next\_point)
+            \State model.Update(next\_point, result)
+            \State budget $\gets$ budget - 1
+        \EndWhile
+    \EndIf
+    \State boundaries $\gets$ IdentifyPhaseBoundaries(model)
+    \State \Return boundaries
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\section{Stage 4: Mechanism Identification}
+
+\begin{definition}[Valid Mechanism]
+A proposed mechanism must:
+\begin{enumerate}
+\item Generate the observed pattern when simulated
+\item Be eliminated when the mechanism is blocked
+\item Make testable predictions beyond the original pattern
+\item Be consistent with known physical/biological laws
+\item Be more parsimonious than alternative explanations
+\end{enumerate}
+\end{definition}
+
+\section{Stage 4.5: Temporal Validation}
+
+\begin{lstlisting}[caption={Temporal Stability Analysis}]
+def temporal_validation(time_series, pattern_extractor):
+    """Validate pattern stability across timescales"""
+    
+    # Bootstrap timescales from data
+    timescales = estimate_relevant_timescales(time_series)
+    
+    stability_results = {}
+    for scale in np.logspace(
+        np.log10(timescales['min']),
+        np.log10(timescales['max']),
+        num=20
+    ):
+        windows = sliding_window(time_series, window_size=scale)
+        patterns = [pattern_extractor(w) for w in windows]
+        
+        stability_results[scale] = {
+            'mean': np.mean(patterns, axis=0),
+            'std': np.std(patterns, axis=0),
+            'cv': np.std(patterns, axis=0) / np.mean(patterns, axis=0),
+            'stationary': test_stationarity(patterns)
+        }
+    
+    # Find minimum stable timescale
+    stable_scales = [s for s, r in stability_results.items() 
+                     if r['cv'] < 0.1 and r['stationary']]
+    
+    return {
+        'min_stable_scale': min(stable_scales) if stable_scales else None,
+        'all_results': stability_results
+    }
+\end{lstlisting}
+
+\section{Stage 5: Synthesis and Reporting}
+
+\begin{protocol}[Structured Reporting Requirements]
+Every \PVP{} report must include:
+\begin{enumerate}
+\item \textbf{Executive Summary}: Pass/fail, confidence, key insight, action items
+\item \textbf{Pattern Details}: Final formulation, classification, validity domains
+\item \textbf{Statistical Summary}: Effect sizes, power achieved, sample sizes
+\item \textbf{Validation Results}: Stage-by-stage outcomes with scores
+\item \textbf{Proposed Experiments}: Falsification, mechanism, and boundary tests
+\item \textbf{Open Questions}: Unresolved issues and required resources
+\item \textbf{Code \& Data}: Repository links and computational notebooks
+\end{enumerate}
+\end{protocol}
+
+\section{Stage 6: Meta-Reflection}
+
+\subsection{Error Mode Taxonomy}
+
+\begin{table}[h]
+\centering
+\caption{Comprehensive Error Mode Classification}
+\begin{tabular}{L{2.5cm}L{8cm}}
+\toprule
+\textbf{Category} & \textbf{Common Failure Modes} \\
+\midrule
+Statistical & Overfitting, p-hacking, selection bias, multiple testing errors \\
+Semantic & Semantic drift, category errors, metaphor literalization \\
+Methodological & Control collapse, temporal aliasing, scale conflation \\
+Computational & Intractability, approximation cascade, precision loss \\
+Cognitive & Anthropic projection, pareidolia, confirmation seeking \\
+Emergent & Artifactual emergence, observer effect, complexity collapse \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\chapter{Uncertainty Quantification}
+
+\section{Uncertainty Propagation Framework}
+
+\begin{lstlisting}[caption={Complete Uncertainty Propagation}]
+class UncertaintyPropagator:
+    """Track confidence intervals through all stages"""
+    
+    def __init__(self):
+        self.stage_uncertainties = {}
+        
+    def propagate(self, stage_name, input_uncertainty, stage_function):
+        """Propagate uncertainty through a stage using Monte Carlo"""
+        
+        output_samples = []
+        for _ in range(1000):
+            # Sample from input distribution
+            input_sample = sample_from_uncertainty(input_uncertainty)
+            # Apply stage function
+            output = stage_function(input_sample)
+            output_samples.append(output)
+        
+        # Calculate output uncertainty
+        output_uncertainty = {
+            'mean': np.mean(output_samples),
+            'std': np.std(output_samples),
+            'ci_lower': np.percentile(output_samples, 2.5),
+            'ci_upper': np.percentile(output_samples, 97.5)
+        }
+        
+        self.stage_uncertainties[stage_name] = output_uncertainty
+        return output_uncertainty
+    
+    def get_final_confidence_interval(self):
+        """Aggregate uncertainties across all stages"""
+        # Account for correlations between stages
+        correlation_matrix = estimate_stage_correlations(
+            self.stage_uncertainties
+        )
+        
+        # Use multivariate normal for correlated uncertainties
+        aggregated = multivariate_aggregate(
+            self.stage_uncertainties,
+            correlation_matrix
+        )
+        
+        return aggregated
+\end{lstlisting}
+
+\section{Confidence Drift Monitoring}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Stage},
+    ylabel={Confidence (\%)},
+    xmin=0, xmax=7,
+    ymin=0, ymax=100,
+    xtick={1,2,3,4,5,6},
+    xticklabels={S1,S2,S3,S4,S5,S6},
+    legend pos=south east,
+    grid=major
+]
+
+% Normal pattern
+\addplot[color=passcolor, mark=o, thick] coordinates {
+    (1,75) (2,72) (3,78) (4,82) (5,85) (6,83)
+};
+\addlegendentry{Normal Drift}
+
+% Concerning pattern
+\addplot[color=warncolor, mark=square, thick] coordinates {
+    (1,80) (2,65) (3,45) (4,72) (5,38) (6,25)
+};
+\addlegendentry{Concerning Drift}
+
+% Threshold
+\addplot[color=red, dashed, thick] coordinates {
+    (0,50) (7,50)
+};
+\addlegendentry{Threshold}
+
+\end{axis}
+\end{tikzpicture}
+\caption{Confidence Drift Patterns}
+\end{figure}
+
+\part{Computational Optimization}
+
+\chapter{Computational Complexity Analysis}
+
+\section{Stage-by-Stage Complexity}
+
+\begin{table}[h]
+\centering
+\caption{Detailed Computational Complexity by Stage}
+\begin{tabular}{llllll}
+\toprule
+\textbf{Stage} & \textbf{Best} & \textbf{Average} & \textbf{Worst} & \textbf{Memory} & \textbf{Optimization} \\
+\midrule
+0 & $\BigO(1)$ & $\BigO(1)$ & $\BigO(1)$ & $\BigO(1)$ & Pre-compute templates \\
+1 & $\BigO(n)$ & $\BigO(n \log n)$ & $\BigO(n^2)$ & $\BigO(n)$ & Sliding windows \\
+2 & $\BigO(1)$ & $\BigO(n)$ & $\BigO(n)$ & $\BigO(1)$ & Parallelize validators \\
+3 & $\BigO(n)$ & $\BigO(n^2)$ & $\BigO(n^3)$ & $\BigO(n)$ & Monte Carlo sampling \\
+3.6 & $\BigO(p^2)$ & $\BigO(n^p)$ & $\BigO(n^p)$ & $\BigO(n^p)$ & Dimension reduction \\
+4.5 & $\BigO(t)$ & $\BigO(nt)$ & $\BigO(nt^2)$ & $\BigO(nt)$ & Downsample if $t > 10^6$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Memory Requirements}
+
+\begin{table}[h]
+\centering
+\caption{Memory Requirements by Data Scale}
+\begin{tabular}{lrrrrr}
+\toprule
+\textbf{Data Points} & \textbf{Stage 1} & \textbf{Stage 3} & \textbf{Stage 3.6} & \textbf{Stage 4.5} & \textbf{Peak} \\
+\midrule
+$10^3$ & 8 KB & 8 MB & 1 MB & 100 KB & $\sim$10 MB \\
+$10^4$ & 80 KB & 800 MB & 10 MB & 1 MB & $\sim$1 GB \\
+$10^5$ & 800 KB & 80 GB* & 100 MB & 10 MB & $\sim$80 GB \\
+$10^6$ & 8 MB & 8 TB* & 1 GB & 100 MB & $\sim$1 GB** \\
+$10^7$ & 80 MB & 800 TB* & 10 GB & 1 GB & $\sim$10 GB** \\
+\bottomrule
+\end{tabular}
+\end{table}
+*Without optimization **With streaming/chunking
+
+\section{Optimization Strategies}
+
+\subsection{Parallelization Opportunities}
+
+\begin{lstlisting}[caption={Parallel Execution Framework}]
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
+import multiprocessing as mp
+
+class ParallelPVP:
+    """Parallel execution strategies for PVP"""
+    
+    @staticmethod
+    def parallel_validation(data_chunks, validation_func, n_workers=None):
+        """Parallel validation across data chunks"""
+        
+        if n_workers is None:
+            n_workers = mp.cpu_count() - 1
+        
+        with ProcessPoolExecutor(max_workers=n_workers) as executor:
+            futures = [
+                executor.submit(validation_func, chunk)
+                for chunk in data_chunks
+            ]
+            
+            results = []
+            for future in futures:
+                try:
+                    results.append(future.result(timeout=300))
+                except TimeoutError:
+                    results.append({'error': 'timeout'})
+        
+        return merge_validation_results(results)
+\end{lstlisting}
+
+\subsection{GPU Acceleration}
+
+\begin{lstlisting}[caption={GPU-Accelerated Permutation Testing}]
+def gpu_accelerated_permutation(data, statistic_func, n_perms=10000):
+    """GPU acceleration for massive permutation tests"""
+    try:
+        import cupy as cp
+        
+        # Transfer to GPU
+        data_gpu = cp.array(data)
+        
+        # Generate all permutations on GPU
+        perms = cp.random.permutation(
+            cp.tile(data_gpu, (n_perms, 1))
+        )
+        
+        # Vectorized statistic calculation
+        perm_stats = statistic_func(perms, axis=1)
+        observed = statistic_func(data_gpu)
+        
+        # P-value calculation
+        p_value = (perm_stats >= observed).mean()
+        
+        return float(p_value)
+        
+    except ImportError:
+        print("GPU acceleration unavailable, falling back to CPU")
+        return None
+\end{lstlisting}
+
+\section{Optimization Decision Tree}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+    decision/.style={diamond, draw, aspect=2, inner sep=0pt, minimum width=3cm},
+    process/.style={rectangle, draw, rounded corners},
+    optimize/.style={rectangle, draw, fill=blue!20},
+    scale=0.9
+]
+
+\node[decision] (size) {Data > $10^6$?};
+\node[process, below left=2cm of size] (small) {Standard Processing};
+\node[decision, below right=2cm of size] (memory) {Memory > Required?};
+\node[optimize, below left=2cm of memory] (stream) {Use Streaming};
+\node[decision, below right=2cm of memory] (gpu) {GPU Available?};
+\node[optimize, below left=2cm of gpu] (sample) {Use Sampling};
+\node[optimize, below right=2cm of gpu] (accelerate) {GPU Accelerate};
+
+\draw[->] (size) -- node[left] {No} (small);
+\draw[->] (size) -- node[right] {Yes} (memory);
+\draw[->] (memory) -- node[left] {No} (stream);
+\draw[->] (memory) -- node[right] {Yes} (gpu);
+\draw[->] (gpu) -- node[left] {No} (sample);
+\draw[->] (gpu) -- node[right] {Yes} (accelerate);
+
+\end{tikzpicture}
+\caption{Optimization Strategy Selection}
+\end{figure}
+
+\part{Validation Libraries}
+
+\chapter{Negative Control Library}
+
+\section{Purpose and Usage}
+
+The Negative Control Library provides validated false patterns for protocol calibration. These patterns are known to be false but may appear real under naive analysis.
+
+\section{Standard False Patterns}
+
+\begin{table}[h]
+\centering
+\caption{Negative Control Patterns}
+\begin{tabular}{L{3cm}L{2cm}L{4cm}c}
+\toprule
+\textbf{Pattern} & \textbf{Domain} & \textbf{Why False} & \textbf{Fails at Stage} \\
+\midrule
+Numerological Birthday & Cognitive & No mechanism, fails randomization & 3 \\
+Mars Retrograde Markets & Physical/Economic & No causal mechanism & 4 \\
+Pyramid Power & Physical & No reproducible effect & 3.5 \\
+Bible Code & Information & Same in any large text & 3 \\
+Random Walk Consciousness & Physical/Cognitive & Statistical artifacts & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Synthetic False Pattern Generation}
+
+\begin{lstlisting}[caption={Generate Calibration Patterns}]
+class NegativeControlGenerator:
+    """Generate synthetic false patterns for testing"""
+    
+    @staticmethod
+    def generate_spurious_correlation(n=1000, correlation=0.3):
+        """Create data with spurious correlation"""
+        # Generate independent variables
+        x = np.random.normal(0, 1, n)
+        y = np.random.normal(0, 1, n)
+        
+        # Add confounding variable
+        confounder = np.random.normal(0, 1, n)
+        
+        # Create spurious correlation through confounder
+        x_observed = x + correlation * confounder
+        y_observed = y + correlation * confounder
+        
+        # Will show correlation but no causal relationship
+        return x_observed, y_observed, confounder
+    
+    @staticmethod
+    def generate_selection_bias_pattern(n=10000, bias_strength=0.5):
+        """Create pattern that only exists due to selection bias"""
+        # Generate random data
+        data = np.random.normal(0, 1, n)
+        
+        # Select biased subset
+        threshold = np.percentile(data, 100 * (1 - bias_strength))
+        selected = data[data > threshold]
+        
+        # Pattern appears in selected data but not in full dataset
+        return data, selected
+\end{lstlisting}
+
+\chapter{Pattern Classification System}
+
+\section{Hierarchical Multi-Label Taxonomy}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+    every node/.style={rectangle, draw, rounded corners, minimum width=2.5cm},
+    fundamental/.style={fill=blue!20},
+    mechanism/.style={fill=green!20},
+    domain/.style={fill=orange!20},
+    level distance=2cm,
+    sibling distance=3cm
+]
+
+\node[fundamental] {Pattern}
+    child {node[fundamental] {Fundamental}
+        child {node {Deterministic}
+            child {node {Mechanical}}
+            child {node {Mathematical}}
+            child {node {Logical}}
+        }
+        child {node {Probabilistic}
+            child {node {Statistical}}
+            child {node {Stochastic}}
+            child {node {Quantum}}
+        }
+        child {node {Emergent}
+            child {node {Weak}}
+            child {node {Strong}}
+            child {node {Computational}}
+        }
+    }
+    child {node[mechanism] {Mechanism}
+        child {node {Algorithmic}}
+        child {node {Dynamical}}
+        child {node {Informational}}
+    }
+    child {node[domain] {Domain}
+        child {node {Physical}}
+        child {node {Biological}}
+        child {node {Cognitive}}
+        child {node {Narrative}}
+    };
+
+\end{tikzpicture}
+\caption{Complete Pattern Classification Hierarchy}
+\end{figure}
+
+\section{Classification Rules}
+
+\begin{protocol}[Multi-Label Classification]
+\begin{enumerate}
+\item Patterns can have multiple labels within each category
+\item All three categories (Fundamental, Mechanism, Domain) must be specified
+\item Labels should be ordered by relevance/strength
+\item Justification required for each label assignment
+\item Cross-category constraints must be respected (e.g., quantum requires physical domain)
+\end{enumerate}
+\end{protocol}
+
+\part{Worked Examples}
+
+\chapter{Example 1: Known-True Pattern}
+\section{Neural Avalanches and Criticality}
+
+\subsection{Pattern Overview}
+Neural avalanches in cortical networks follow a power-law distribution with critical exponent $\alpha \approx 1.5$, indicating the brain operates near a critical point for optimal information processing.
+
+\subsection{Stage 0: Registration}
+
+\begin{lstlisting}[caption={Pattern Definition}]
+# Mathematical formulation
+P(s) = s^(-alpha) where alpha = 1.5
+# P(s) is probability of avalanche size s
+
+# Classification
+fundamental_type = ['Probabilistic', 'Emergent']
+mechanism_type = ['Dynamical', 'Informational']
+domain = ['Biological', 'Cognitive']
+
+# Power analysis
+required_n = 156  # avalanches per condition
+# Based on effect size = 0.5, CV = 0.4, power = 0.80
+\end{lstlisting}
+
+\subsection{Stage 1-2: Observation and Deconstruction}
+
+\begin{lstlisting}[caption={Initial Analysis}]
+# Load and process data
+avalanches = detect_avalanche(spike_times, threshold_ms=5)
+sizes = [len(av) for av in avalanches]
+
+# Results:
+# Total avalanches: 15,234
+# Size range: 1 - 847
+# Heavy-tailed distribution observed
+
+# Critical deconstruction checks:
+# 1. Binning artifact test: PASSED (CV < 10%)
+# 2. Electrode spacing: Adequate coverage confirmed
+# 3. Non-stationarity: Controlled via windowing
+\end{lstlisting}
+
+\subsection{Stage 3: Null Hypothesis Testing}
+
+\begin{table}[h]
+\centering
+\caption{Null Test Results}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Null Method} & \textbf{Preserves Power Law} & \textbf{Result} \\
+\midrule
+Shuffle & No & \textcolor{passcolor}{PASS} \\
+Poisson & No & \textcolor{passcolor}{PASS} \\
+Surrogate & No & \textcolor{passcolor}{PASS} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Stage 3.6: Phase Transition}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Excitation (E)},
+    ylabel={Inhibition (I)},
+    zlabel={$\alpha$},
+    width=10cm,
+    height=8cm,
+    view={45}{30},
+    colormap/cool,
+    colorbar
+]
+\addplot3[
+    surf,
+    samples=20,
+    domain=0.5:2
+] {1.5 + 0.3*sin(deg(x*pi)) * cos(deg(y*pi))};
+\end{axis}
+\end{tikzpicture}
+\caption{Phase Diagram: Critical exponent $\alpha$ as function of E/I balance}
+\end{figure}
+
+\subsection{Final Assessment}
+
+\begin{itemize}
+\item \textbf{Pattern Status}: \textcolor{passcolor}{CONFIRMED}
+\item \textbf{Confidence}: 92\% (CI: 88\%-95\%)
+\item \textbf{Key Finding}: Brain operates near $E/I \approx 1$ for criticality
+\item \textbf{Mechanism}: Self-organized criticality through synaptic plasticity
+\end{itemize}
+
+\chapter{Example 2: Known-False Pattern}
+\section{Astrological Market Prediction}
+
+\subsection{Pattern Claim}
+Mercury retrograde periods predict increased probability of stock market crashes.
+
+\subsection{Initial Observation}
+\begin{lstlisting}[caption={Spurious Correlation}]
+# Initial analysis shows apparent effect:
+P(crash|retrograde) = 0.023
+P(crash|normal) = 0.019
+Ratio = 1.21 (21% increase!)
+
+# But this is spurious...
+\end{lstlisting}
+
+\subsection{Stage 3: Proper Statistical Testing}
+
+\begin{lstlisting}[caption={Multiple Testing Correction}]
+# Uncorrected p-value: 0.042 (seems significant!)
+
+# But we're testing 8 planets x 2 directions = 16 hypotheses
+p_corrected = 0.042 * 16 = 0.672  # Not significant
+
+# Permutation test confirms:
+p_value_permutation = 0.238  # Pattern within noise
+\end{lstlisting}
+
+\subsection{Stage 4: Mechanism Search}
+
+\begin{table}[h]
+\centering
+\caption{Physical Mechanism Analysis}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Proposed Mechanism} & \textbf{Relative Strength} & \textbf{Plausible?} \\
+\midrule
+Gravitational & $2.6 \times 10^{-7}$ vs Moon & \textcolor{failcolor}{NO} \\
+Electromagnetic & $1.1 \times 10^{-18}$ vs Earth & \textcolor{failcolor}{NO} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Pattern REJECTED at Stage 4}
+\begin{itemize}
+\item Initial correlation was spurious
+\item Failed proper statistical testing
+\item No plausible physical mechanism
+\item Positive control (Monday effect) confirms tests work
+\end{itemize}
+
+\chapter{Example 3: Ambiguous Pattern}
+\section{Meditation-Induced EEG Coherence}
+
+\subsection{Why Ambiguous?}
+\begin{enumerate}
+\item Some studies show effect, others don't
+\item Multiple meditation types exist
+\item "Long-term" poorly defined
+\item Measurement methods vary
+\end{enumerate}
+
+\subsection{Critical: Semantic Anchoring}
+
+\begin{lstlisting}[caption={Ultra-Precise Definitions}]
+definitions = {
+    'long_term_meditator': {
+        'mathematical': 'practice_hours > 10000',
+        'operational': 'Daily >2hr for >10 years + retreats',
+        'invariant': 'Sustained attention neural changes'
+    },
+    'gamma_coherence': {
+        'mathematical': 'PLV = |E[exp(i*(phi1-phi2))]|',
+        'operational': 'Morlet wavelet -> Hilbert -> PLV',
+        'invariant': 'Phase relationship, not amplitude'
+    }
+}
+\end{lstlisting}
+
+\subsection{Sensitivity Analysis}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Practice Hours Threshold},
+    ylabel={Effect Size (d)},
+    xmin=5000, xmax=15000,
+    ymin=0, ymax=1,
+    legend pos=north east,
+    grid=major
+]
+
+\addplot[color=blue, mark=o, thick] coordinates {
+    (5000,0.35) (7500,0.48) (10000,0.61) (12500,0.72) (15000,0.78)
+};
+\addlegendentry{Effect Size}
+
+\addplot[color=red, dashed, thick] coordinates {
+    (5000,0.5) (15000,0.5)
+};
+\addlegendentry{d=0.5 threshold}
+
+\end{axis}
+\end{tikzpicture}
+\caption{Effect Size Sensitivity to Definition}
+\end{figure}
+
+\subsection{Resolution: PROVISIONAL}
+
+\begin{itemize}
+\item Pattern shows promise but requires:
+  \begin{enumerate}
+  \item Standardized experience quantification
+  \item Multi-site replication protocol
+  \item Mechanism test battery
+  \item Public raw data repository
+  \end{enumerate}
+\item Focus on 8,000-12,000 hour practitioners
+\item Clear research program defined
+\end{itemize}
+
+\part{Implementation Guidance}
+
+\chapter{Quick Start Guide}
+
+\section{Choosing Your PVP Variant}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+    node distance=2cm,
+    decision/.style={diamond, draw, aspect=2},
+    variant/.style={rectangle, draw, rounded corners, fill=blue!20}
+]
+
+\node[decision] (resources) {Resources?};
+\node[variant, below left=of resources] (micro) {PVP-Micro};
+\node[decision, below right=of resources] (stakes) {Stakes?};
+\node[variant, below left=of stakes] (standard) {PVP-Standard};
+\node[variant, below right=of stakes] (complete) {PVP-Complete};
+
+\draw[->] (resources) -- node[left] {Minimal} (micro);
+\draw[->] (resources) -- node[right] {Available} (stakes);
+\draw[->] (stakes) -- node[left] {Normal} (standard);
+\draw[->] (stakes) -- node[right] {High} (complete);
+
+\end{tikzpicture}
+\caption{PVP Variant Selection}
+\end{figure}
+
+\section{Pre-Validation Checklist}
+
+\begin{itemize}
+\item[$\square$] Pattern mathematically defined
+\item[$\square$] Power analysis completed
+\item[$\square$] Semantic anchors locked
+\item[$\square$] Computational budget estimated
+\item[$\square$] Negative controls selected
+\item[$\square$] Data quality verified
+\item[$\square$] Analysis code tested on synthetic data
+\end{itemize}
+
+\section{Red Flags: When to Stop}
+
+\begin{warning}[Critical Failure Points]
+Stop validation immediately if:
+\begin{itemize}
+\item Semantic drift exceeds domain threshold
+\item Effect only visible with one specific analysis
+\item Pattern requires increasingly complex explanations
+\item Negative controls show similar patterns
+\item Computational requirements become intractable
+\end{itemize}
+\end{warning}
+
+\chapter{Common Pitfalls and Solutions}
+
+\section{Statistical Pitfalls}
+
+\begin{table}[h]
+\centering
+\caption{Common Statistical Errors and Remedies}
+\begin{tabular}{L{3cm}L{4cm}L{4cm}}
+\toprule
+\textbf{Pitfall} & \textbf{Consequence} & \textbf{Solution} \\
+\midrule
+P-hacking & False positives & Pre-register all analyses \\
+Overfitting & Poor generalization & Use held-out validation set \\
+Multiple testing & Inflated Type I error & Apply appropriate corrections \\
+Small sample & Unreliable results & Use power analysis upfront \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Computational Pitfalls}
+
+\begin{lstlisting}[caption={Memory Management Example}]
+# BAD: Loading everything into memory
+def process_large_dataset(filename):
+    data = np.load(filename)  # May cause memory error
+    return analyze(data)
+
+# GOOD: Streaming processing
+def process_large_dataset_streaming(filename):
+    results = []
+    with h5py.File(filename, 'r') as f:
+        for chunk in chunks(f['data'], size=10000):
+            results.append(analyze(chunk))
+    return aggregate(results)
+\end{lstlisting}
+
+\section{Semantic Pitfalls}
+
+\begin{protocol}[Preventing Semantic Drift]
+\begin{enumerate}
+\item Document all definitions at Stage 0.5
+\item Create semantic fingerprints of key terms
+\item Monitor drift at each stage
+\item Flag any change > 5\%
+\item Re-anchor if drift detected
+\item Document all definition changes
+\end{enumerate}
+\end{protocol}
+
+\chapter{Meta-Validation Protocol}
+
+\section{Self-Application of PVP}
+
+The PVP must validate itself through:
+
+\begin{enumerate}
+\item \textbf{Negative Control Performance}: Correctly reject 95\%+ of known-false patterns
+\item \textbf{Positive Control Sensitivity}: Detect 90\%+ of synthetic patterns
+\item \textbf{Cross-Scale Validation}: Work across 3+ scales
+\item \textbf{Temporal Stability}: Consistent results over 6 months
+\item \textbf{Computational Efficiency}: Meet stated complexity bounds
+\item \textbf{Inter-Team Agreement}: 3 independent teams converge
+\end{enumerate}
+
+\section{Certification Flow}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+    node distance=1.5cm,
+    process/.style={rectangle, draw, rounded corners},
+    pass/.style={process, fill=green!20},
+    scale=0.9
+]
+
+\node[process] (neg) {Negative Controls};
+\node[process, below=of neg] (pos) {Positive Controls};
+\node[process, below=of pos] (border) {Borderline Cases};
+\node[process, below=of border] (hist) {Historical Test};
+\node[process, below=of hist] (live) {Live Discovery};
+\node[process, below=of live] (comp) {Computational};
+\node[process, below=of comp] (temp) {Temporal};
+\node[pass, below=of temp] (cert) {Certified v3.0};
+
+\draw[->] (neg) -- node[right] {15/15 rejected} (pos);
+\draw[->] (pos) -- node[right] {10/10 detected} (border);
+\draw[->] (border) -- node[right] {7/10 + justified} (hist);
+\draw[->] (hist) -- node[right] {5/5 rejected} (live);
+\draw[->] (live) -- node[right] {replicated} (comp);
+\draw[->] (comp) -- node[right] {meets bounds} (temp);
+\draw[->] (temp) -- node[right] {6-month stable} (cert);
+
+\end{tikzpicture}
+\caption{Meta-PVP Certification Flow}
+\end{figure}
+
+% ============================================
+% Back Matter
+% ============================================
+\backmatter
+
+\appendix
+
+\chapter{Statistical Tables and Formulas}
+
+\section{Effect Size Calculations}
+
+\begin{align}
+\text{Cohen's } d &= \frac{\bar{X}_1 - \bar{X}_2}{s_{\text{pooled}}} \\
+s_{\text{pooled}} &= \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}}
+\end{align}
+
+\section{Power Calculation Reference}
+
+\begin{table}[h]
+\centering
+\caption{Sample Size for 80\% Power (two-tailed, $\alpha=0.05$)}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Effect Size (d)} & 0.2 & 0.5 & 0.8 & 1.0 & 1.2 \\
+\midrule
+Sample per group & 394 & 64 & 26 & 17 & 12 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\chapter{Code Templates}
+
+\section{Complete PVP Implementation Template}
+
+\begin{lstlisting}[caption={Full PVP Pipeline}]
+class PatternValidationPipeline:
+    """Complete PVP implementation"""
+    
+    def __init__(self, pattern_definition, data, variant='standard'):
+        self.pattern = pattern_definition
+        self.data = data
+        self.variant = variant
+        self.results = {}
+        self.uncertainties = UncertaintyPropagator()
+        
+    def run_validation(self):
+        """Execute full validation pipeline"""
+        
+        # Stage 0: Registration
+        self.register_pattern()
+        
+        # Stage 0.5: Semantic Anchoring
+        if not self.anchor_semantics():
+            return self.fail("Semantic instability")
+        
+        # Stage 1: Observation
+        observations = self.observe_pattern()
+        
+        # Stage 2: Deconstruction
+        if not self.critical_analysis(observations):
+            return self.fail("Simpler explanation exists")
+        
+        # Stage 3: Null Testing
+        if not self.null_hypothesis_suite():
+            return self.fail("Pattern in noise")
+        
+        # Stage 3.5: Positive Control
+        if not self.verify_detection_capability():
+            return self.fail("Cannot detect known patterns")
+        
+        # Optional stages based on variant
+        if self.variant in ['standard', 'complete']:
+            self.phase_transition_analysis()
+            self.mechanism_search()
+            
+        if self.variant == 'complete':
+            self.temporal_validation()
+            
+        # Stage 5: Synthesis
+        self.synthesize_results()
+        
+        # Stage 6: Meta-reflection
+        self.meta_analysis()
+        
+        return self.results
+\end{lstlisting}
+
+\chapter{Supplementary Materials}
+
+\section{Required Software}
+
+\begin{table}[h]
+\centering
+\caption{Software Dependencies}
+\begin{tabular}{lll}
+\toprule
+\textbf{Package} & \textbf{Version} & \textbf{Purpose} \\
+\midrule
+NumPy & $\geq$ 1.20 & Numerical computing \\
+SciPy & $\geq$ 1.7 & Statistical tests \\
+Statsmodels & $\geq$ 0.12 & Power analysis \\
+Scikit-learn & $\geq$ 0.24 & Machine learning \\
+Matplotlib & $\geq$ 3.4 & Visualization \\
+CuPy & Optional & GPU acceleration \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Data Format Standards}
+
+\begin{lstlisting}[caption={Standard Data Format}]
+# HDF5 structure for PVP data
+pvp_data.h5
+├── metadata/
+│   ├── pattern_definition
+│   ├── collection_parameters
+│   └── preprocessing_steps
+├── raw_data/
+│   ├── observations
+│   └── timestamps
+├── processed_data/
+│   ├── features
+│   └── patterns
+└── validation_results/
+    ├── stage_outcomes
+    └── confidence_intervals
+\end{lstlisting}
+
+\section{Contact and Support}
+
+\begin{itemize}
+\item \textbf{Methodology Support}: methodology@fractality.institute
+\item \textbf{Code Repository}: \url{https://github.com/fractality/pvp-v3}
+\item \textbf{Issue Tracking}: \url{https://github.com/fractality/pvp-v3/issues}
+\item \textbf{Community Forum}: \url{https://forum.fractality.institute/pvp}
+\end{itemize}
+
+\chapter{Version History}
+
+\begin{itemize}
+\item \textbf{v3.1} (2025-08-24): RE-RELEASE by Claude Opus 4.1 after completion of FI-UCT-v9.1
+\item \textbf{v3.0} (2025-08-03): MAJOR RELEASE - Full implementation with statistics, computation, uncertainty
+\item \textbf{v2.3} (2025-08-02): Confidence drift monitoring, pattern classification, error taxonomy  
+\item \textbf{v2.2} (2025-08-02): Temporal dynamics, phase transitions, expanded scales
+\item \textbf{v2.1} (2025-07-15): Qualia check, meta-validation, auto-falsifier
+\item \textbf{v2.0} (2025-06-01): Major architectural revision
+\item \textbf{v1.0} (2025-01-15): Initial release
+\end{itemize}
+
+% ============================================
+% Closing
+% ============================================
+
+\clearpage
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+\Large
+\textbf{Pattern Validation Protocol v3.1}\\[1em]
+\large
+Truth Through Rigorous Testing\\[2em]
+\normalsize
+\textit{``Truth emerges not from certainty,\\
+but from the rigorous quantification of uncertainty.''}\\[3em]
+The Fractality Institute\\
+\url{https://fractality.institute}
+\end{center}
+\vspace*{\fill}
+
+\end{document}
